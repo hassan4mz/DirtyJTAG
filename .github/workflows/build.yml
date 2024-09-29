@@ -58,3 +58,39 @@ jobs:
       run: |
         cd dirtyjtag
         make PLATFORM=stlinkv2white
+
+    - name: Upload BluePill artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: bluepill
+        path: dirtyjtag/build/bluepill
+
+    - name: Upload STLinkV2 artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: stlinkv2
+        path: dirtyjtag/build/stlinkv2
+
+    - name: Upload STLinkV2 DFU artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: stlinkv2dfu
+        path: dirtyjtag/build/stlinkv2dfu
+
+    - name: Upload Baite artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: baite
+        path: dirtyjtag/build/baite
+
+    - name: Upload Olimex STM32H103 artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: olimexstm32h103
+        path: dirtyjtag/build/olimexstm32h103
+
+    - name: Upload STLinkV2 White artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: stlinkv2white
+        path: dirtyjtag/build/stlinkv2white
