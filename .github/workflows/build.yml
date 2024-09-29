@@ -26,7 +26,8 @@ jobs:
 
     - name: Compile DirtyJTAG
       run: |
-        cd software
+        git clone --recursive https://github.com/jeanthom/dirtyjtag
+        cd dirtyjtag
         make
 
     - name: Archive build artifacts
