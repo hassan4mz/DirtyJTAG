@@ -1,0 +1,60 @@
+name: Build DirtyJTAG
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: alpine:3.14
+
+    steps:
+    - name: Install dependencies
+      run: |
+        apk add --no-cache python2 make gcc-arm-none-eabi newlib-arm-none-eabi
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up DirtyJTAG
+      run: |
+        cd dirtyjtag
+        git submodule init
+        git submodule update
+
+    - name: Build for BluePill
+      run: |
+        cd dirtyjtag
+        make PLATFORM=bluepill
+
+    - name: Build for STLinkV2
+      run: |
+        cd dirtyjtag
+        make PLATFORM=stlinkv2
+
+    - name: Build for STLinkV2 DFU
+      run: |
+        cd dirtyjtag
+        make PLATFORM=stlinkv2dfu
+
+    - name: Build for Baite
+      run: |
+        cd dirtyjtag
+        make PLATFORM=baite
+
+    - name: Build for Olimex STM32H103
+      run: |
+        cd dirtyjtag
+        make PLATFORM=olimexstm32h103
+
+    - name: Build for STLinkV2 White
+      run: |
+        cd dirtyjtag
+        make PLATFORM=stlinkv2white
