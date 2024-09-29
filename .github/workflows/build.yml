@@ -35,4 +35,4 @@ jobs:
       with:
         name: dirtyjtag-bin
         path: |
-          dirtyjtag/src/*
+          dirtyjtag/src/*.bin
